@@ -41,7 +41,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: production-build
-        path: ./dist
+        path: dist
         retention-days: 1
 
     - name: Upload Coverage Report
