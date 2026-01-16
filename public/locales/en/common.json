@@ -1,0 +1,17 @@
+{
+    "app_title": "Pokedex",
+    "search_placeholder": "Search Pokemon...",
+    "all_types": "All Types",
+    "no_pokemon_found": "No Pokemon found.",
+    "try_adjusting": "Try adjusting your search or filters.",
+    "page_info": "Page {{page}} of {{total}}",
+    "height": "Height",
+    "weight": "Weight",
+    "base_stats": "Base Stats",
+    "abilities": "Abilities",
+    "loading": "Loading...",
+    "favorites": "Favorites",
+    "my_favorites": "My Favorites",
+    "no_favorites": "No favorites yet.",
+    "browse_pokemon": "Browse Pokemon"
+}

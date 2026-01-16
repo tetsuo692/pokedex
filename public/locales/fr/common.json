@@ -1,0 +1,17 @@
+{
+    "app_title": "Pokédex",
+    "search_placeholder": "Rechercher un Pokémon...",
+    "all_types": "Tous les types",
+    "no_pokemon_found": "Aucun Pokémon trouvé.",
+    "try_adjusting": "Essayez d'ajuster votre recherche ou vos filtres.",
+    "page_info": "Page {{page}} sur {{total}}",
+    "height": "Taille",
+    "weight": "Poids",
+    "base_stats": "Statistiques de base",
+    "abilities": "Talents",
+    "loading": "Chargement...",
+    "favorites": "Favoris",
+    "my_favorites": "Mes Favoris",
+    "no_favorites": "Pas encore de favoris.",
+    "browse_pokemon": "Parcourir les Pokémon"
+}
