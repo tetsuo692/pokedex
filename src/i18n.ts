@@ -17,7 +17,7 @@ i18n
             escapeValue: false, // not needed for react as it escapes by default
         },
         backend: {
-            loadPath: 'pokedex/locales/{{lng}}/{{ns}}.json',
+            loadPath: './locales/{{lng}}/{{ns}}.json',
         },
         detection: {
             order: ['localStorage', 'navigator'],
