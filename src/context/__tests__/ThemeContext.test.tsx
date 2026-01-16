@@ -1,5 +1,5 @@
-import { render, screen, act } from '@testing-library/react';
-import { ThemeProvider, ThemeContext } from '../context/ThemeContext';
+import { render, screen } from '@testing-library/react';
+import { ThemeProvider, ThemeContext } from '../ThemeContext';
 import { useContext } from 'react';
 import userEvent from '@testing-library/user-event';
 

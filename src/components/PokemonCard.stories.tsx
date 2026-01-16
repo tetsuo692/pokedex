@@ -33,6 +33,7 @@ const mockPokemon = {
 
 export const Default: Story = {
     args: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         pokemon: mockPokemon as any, // Cast to any to avoid full mock pain
         loading: false,
         onClick: () => { },
@@ -49,7 +50,7 @@ export const FireType: Story = {
                 ...mockPokemon.sprites,
                 other: { 'official-artwork': { front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png' } }
             }
-        } as any,
+        } as any, // eslint-disable-line @typescript-eslint/no-explicit-any
         loading: false,
         onClick: () => { },
     },

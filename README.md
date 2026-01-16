@@ -1,5 +1,8 @@
 # Modern React Pokedex
 
+[![CI - Build and Test](https://github.com/tetsuo692/pokedex/actions/workflows/ci.yml/badge.svg)](https://github.com/tetsuo692/pokedex/actions/workflows/ci.yml)
+[![CD - Deploy to GitHub Pages](https://github.com/tetsuo692/pokedex/actions/workflows/cd.yml/badge.svg)](https://github.com/tetsuo692/pokedex/actions/workflows/cd.yml)
+
 A modern, interactive Pokedex application built with React, TypeScript, and Tailwind CSS, utilizing the PokeAPI.
 
 ## Features

@@ -9,6 +9,7 @@ export const usePokemon = (name: string) => {
 
     useEffect(() => {
         let mounted = true;
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setLoading(true);
         getPokemonDetails(name)
             .then(data => {
