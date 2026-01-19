@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { PokemonCard } from './PokemonCard';
 import { PokemonModal } from './PokemonModal';
 import { usePokemonFilter } from '../hooks/usePokemonFilter';
+import { usePokemonPerPage } from '../hooks/usePokemonPerPage';
+import { PokemonPerPageSelector } from './PokemonPerPageSelector';
 import { getTypes } from '../api/pokeApi';
 import type { NamedAPIResource, Pokemon } from '../types/pokemon';
 import { FaSearch, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
@@ -9,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 export const PokemonList: React.FC = () => {
     const { t } = useTranslation(['common', 'pokemon']);
+    const { limit, setLimit } = usePokemonPerPage();
     const {
         pokemon,
         loading,
@@ -19,7 +22,7 @@ export const PokemonList: React.FC = () => {
         setSearch,
         selectedType,
         setSelectedType
-    } = usePokemonFilter();
+    } = usePokemonFilter(limit);
 
     const [types, setTypes] = useState<NamedAPIResource[]>([]);
     const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
@@ -34,8 +37,10 @@ export const PokemonList: React.FC = () => {
             <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm sticky top-[73px] z-20 transition-all border-b border-gray-100 dark:border-gray-700">
                 <div className="container mx-auto px-6 py-4">
                     <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+
                         <div className="flex items-center gap-4">
                             {/* Filters Section */}
+                            <PokemonPerPageSelector limit={limit} onLimitChange={setLimit} />
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
