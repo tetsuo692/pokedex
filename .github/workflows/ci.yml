@@ -1,0 +1,53 @@
+name: CI - Build and Test
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      # Using npm ci for cleaner/faster installs in CI environments (requires package-lock.json)
+      run: npm ci
+
+    - name: Run Linting
+      # Ensures code style and quality
+      run: npm run lint
+
+    - name: Run Tests with Coverage
+      # Generates coverage report
+      run: npm run test:coverage
+
+    - name: Build Project
+      # Compiles TypeScript and builds the Vite app
+      run: npm run build
+
+    - name: Upload Build Artifact
+      # Uploads the 'dist' folder to be used by the CD workflow
+      uses: actions/upload-artifact@v4
+      with:
+        name: production-build
+        path: dist
+        retention-days: 1
+
+    - name: Upload Coverage Report
+      # Uploads coverage report as an artifact for inspection
+      if: always() # Run even if tests fail slightly, though usually we want to block on failure
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: coverage
