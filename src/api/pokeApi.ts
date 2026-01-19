@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { setupCache } from 'axios-cache-interceptor';
 import type { Pokemon, PokemonListResponse, NamedAPIResource } from '../types/pokemon';
 
 const BASE_URL = 'https://pokeapi.co/api/v2';
 
-export const api = axios.create({
+export const api = setupCache(axios.create({
     baseURL: BASE_URL,
-});
+}));
 
 export const getPokemonList = async (limit = 20, offset = 0): Promise<PokemonListResponse> => {
     const response = await api.get<PokemonListResponse>(`/pokemon?limit=${limit}&offset=${offset}`);
