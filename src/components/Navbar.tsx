@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { FaHeart, FaHome } from 'react-icons/fa';
+import { FaHeart, FaHome, FaGithub } from 'react-icons/fa';
 import { ThemeToggle } from './ThemeToggle';
 
 export const Navbar: React.FC = () => {
@@ -34,6 +34,17 @@ export const Navbar: React.FC = () => {
                         >
                             <FaHeart /> <span>{t('favorites', 'Favorites')}</span>
                         </Link>
+
+                        <a
+                            href="https://github.com/tetsuo692/pokedex"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="View source on GitHub"
+                            className="flex items-center gap-2 font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                        >
+                            <FaGithub size={20} />
+                            <span className="sr-only">GitHub</span>
+                        </a>
 
                         <div className="w-px h-6 bg-gray-200 dark:bg-gray-600 mx-2 hidden sm:block"></div>
                         <ThemeToggle />
