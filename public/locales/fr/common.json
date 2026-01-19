@@ -13,5 +13,7 @@
     "favorites": "Favoris",
     "my_favorites": "Mes Favoris",
     "no_favorites": "Pas encore de favoris.",
-    "browse_pokemon": "Parcourir les Pokémon"
+    "browse_pokemon": "Parcourir les Pokémon",
+    "per_page": "Par page :",
+    "select_per_page": "Sélectionner le nombre de pokémon par page"
 }

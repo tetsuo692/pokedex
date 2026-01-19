@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { getAllPokemon, getPokemonByType, getPokemonList } from '../api/pokeApi';
 import type { NamedAPIResource } from '../types/pokemon';
 
-const PAGE_SIZE = 24; // 24 divides nicely by 2, 3, 4, 6, 8, 12 for grids
+// PAGE_SIZE removed, now dynamic
 
-export const usePokemonFilter = () => {
+export const usePokemonFilter = (pageSize = 24) => {
     const [pokemon, setPokemon] = useState<NamedAPIResource[]>([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
@@ -30,8 +30,8 @@ export const usePokemonFilter = () => {
 
                 if (!isFiltering) {
                     // Server-side pagination mode
-                    const offset = (page - 1) * PAGE_SIZE;
-                    const res = await getPokemonList(PAGE_SIZE, offset);
+                    const offset = (page - 1) * pageSize;
+                    const res = await getPokemonList(pageSize, offset);
                     if (cancel) return;
                     sourceList = res.results;
                     totalCount = res.count;
@@ -69,12 +69,12 @@ export const usePokemonFilter = () => {
                     totalCount = baseList.length;
 
                     // 3. Client-side Pagination
-                    const offset = (page - 1) * PAGE_SIZE;
-                    sourceList = baseList.slice(offset, offset + PAGE_SIZE);
+                    const offset = (page - 1) * pageSize;
+                    sourceList = baseList.slice(offset, offset + pageSize);
                 }
 
                 setPokemon(sourceList);
-                setTotalPages(Math.ceil(totalCount / PAGE_SIZE));
+                setTotalPages(Math.ceil(totalCount / pageSize));
 
             } catch (err) {
                 console.error(err);
@@ -90,7 +90,7 @@ export const usePokemonFilter = () => {
             cancel = true;
             clearTimeout(timeoutId);
         };
-    }, [page, search, selectedType, allCache, typeCache]);
+    }, [page, search, selectedType, allCache, typeCache, pageSize]);
 
     // Reset page when filters change
     useEffect(() => {
