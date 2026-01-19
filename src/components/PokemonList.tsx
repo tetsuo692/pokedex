@@ -50,6 +50,7 @@ export const PokemonList: React.FC = () => {
                                 <input
                                     type="text"
                                     placeholder={t('search_placeholder')}
+                                    aria-label={t('search_placeholder')}
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                     className="pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 dark:text-white border-none rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:bg-white dark:focus:bg-gray-600 w-full transition-all duration-300 shadow-inner"
@@ -60,6 +61,7 @@ export const PokemonList: React.FC = () => {
                             <select
                                 value={selectedType}
                                 onChange={(e) => setSelectedType(e.target.value)}
+                                aria-label={t('filter_by_type', 'Filter by type')}
                                 className="px-4 py-2 bg-gray-100 dark:bg-gray-700 dark:text-white border-none rounded-xl focus:ring-2 focus:ring-blue-500/50 focus:bg-white dark:focus:bg-gray-600 capitalize text-gray-700 w-full sm:w-48 cursor-pointer shadow-sm hover:shadow-md transition-all appearance-none"
                                 style={{
                                     backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%22//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E")`,
@@ -114,7 +116,8 @@ export const PokemonList: React.FC = () => {
                         <button
                             onClick={() => setPage(p => Math.max(1, p - 1))}
                             disabled={page === 1 || loading}
-                            className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed transition-all text-blue-600 dark:text-blue-400 hover:scale-110 active:scale-95"
+                            aria-label={t('previous_page', 'Previous page')}
+                            className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed transition-all text-blue-600 dark:text-blue-400 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <FaChevronLeft size={20} />
                         </button>
@@ -126,7 +129,8 @@ export const PokemonList: React.FC = () => {
                         <button
                             onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                             disabled={page === totalPages || loading}
-                            className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed transition-all text-blue-600 dark:text-blue-400 hover:scale-110 active:scale-95"
+                            aria-label={t('next_page', 'Next page')}
+                            className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed transition-all text-blue-600 dark:text-blue-400 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <FaChevronRight size={20} />
                         </button>
