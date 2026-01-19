@@ -31,7 +31,15 @@ export const PokemonCardView: React.FC<PokemonCardViewProps> = ({ pokemon, loadi
 
     return (
         <div
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 cursor-pointer transform hover:scale-105 transition-all duration-300 hover:shadow-xl relative overflow-hidden group border border-transparent dark:border-gray-700"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onClick(pokemon);
+                }
+            }}
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 cursor-pointer transform hover:scale-105 transition-all duration-300 hover:shadow-xl relative overflow-hidden group border border-transparent dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
             onClick={() => onClick(pokemon)}
         >
             <div className="absolute -right-8 -top-8 w-40 h-40 bg-gray-50 dark:bg-gray-900/50 rounded-full z-0 group-hover:bg-gray-100 dark:group-hover:bg-gray-700/50 transition-colors duration-300"></div>
@@ -39,8 +47,14 @@ export const PokemonCardView: React.FC<PokemonCardViewProps> = ({ pokemon, loadi
             {/* Favorite Toggle (if provided) */}
             {onToggleFavorite && (
                 <button
-                    onClick={onToggleFavorite}
-                    className="absolute top-2 right-2 z-20 p-2 rounded-full bg-white/50 dark:bg-gray-700/50 hover:bg-white dark:hover:bg-gray-600 text-gray-400 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors shadow-sm"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        if (onToggleFavorite) {
+                            onToggleFavorite(e);
+                        }
+                    }}
+                    aria-label={isFavorite ? `Remove ${pokemon.name} from favorites` : `Add ${pokemon.name} to favorites`}
+                    className="absolute top-2 right-2 z-20 p-2 rounded-full bg-white/50 dark:bg-gray-700/50 hover:bg-white dark:hover:bg-gray-600 text-gray-400 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

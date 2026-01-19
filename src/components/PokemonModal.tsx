@@ -27,6 +27,9 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) 
                 onClick={onClose}
             >
                 <motion.div
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="modal-title"
                     initial={{ scale: 0.9, opacity: 0, y: 20 }}
                     animate={{ scale: 1, opacity: 1, y: 0 }}
                     exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -39,7 +42,7 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) 
                         {/* Favorite Button */}
                         <button
                             onClick={() => toggleFavorite(pokemon.id)}
-                            aria-label={isFavorite(pokemon.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+                            aria-label={isFavorite(pokemon.id) ? t('remove_favorite', "Retirer des favoris") : t('add_favorite', "Ajouter aux favoris")}
                             className={`
                         p-3 rounded-full transition-all duration-300 shadow-sm border-2 focus:outline-none focus:ring-2 focus:ring-offset-2
                         ${isFavorite(pokemon.id)
@@ -55,7 +58,7 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) 
                         {/* Close Button */}
                         <button
                             onClick={onClose}
-                            aria-label="Fermer la modale"
+                            aria-label={t('close_modal', "Fermer la modale")}
                             className="p-3 bg-white dark:bg-gray-700 border-2 border-gray-100 dark:border-gray-600 text-gray-500 dark:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-800 dark:hover:text-white transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
                         >
                             <FaTimes size={20} />
@@ -67,7 +70,7 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) 
                         <div className="absolute top-0 left-0 w-full h-full bg-linear-to-b from-transparent to-black/10"></div>
                         <div className="relative z-10 text-white text-center">
                             <span className="text-sm font-bold opacity-80">#{pokemon.id.toString().padStart(3, '0')}</span>
-                            <h2 className="text-4xl font-bold capitalize mb-4 tracking-wide">{pokemon.name}</h2>
+                            <h2 id="modal-title" className="text-4xl font-bold capitalize mb-4 tracking-wide">{pokemon.name}</h2>
                             <div className="flex gap-2 justify-center mb-8">
                                 {pokemon.types.map((typeInfo) => (
                                     <span key={typeInfo.type.name} className="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-white font-semibold shadow-sm capitalize text-sm border border-white/30">
