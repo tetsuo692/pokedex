@@ -3,18 +3,34 @@ import { PokemonList } from '../PokemonList';
 import { usePokemonFilter } from '../../hooks/usePokemonFilter';
 import { getTypes } from '../../api/pokeApi';
 import { usePokemon } from '../../hooks/usePokemon';
+import { usePokemonPerPage } from '../../hooks/usePokemonPerPage';
 
 jest.mock('../../hooks/usePokemonFilter');
 jest.mock('../../api/pokeApi');
 jest.mock('../../hooks/usePokemon');
+jest.mock('../../hooks/usePokemonPerPage');
+jest.mock('react-i18next', () => ({
+    useTranslation: () => ({ t: (key: string) => key }),
+}));
+jest.mock('../PokemonModal', () => ({
+    PokemonModal: () => <div data-testid="pokemon-modal" />
+}));
+jest.mock('../PokemonPerPageSelector', () => ({
+    PokemonPerPageSelector: () => <div data-testid="per-page-selector" />
+}));
 
 const mockUsePokemonFilter = usePokemonFilter as jest.Mock;
 const mockGetTypes = getTypes as jest.Mock;
 const mockUsePokemon = usePokemon as jest.Mock;
+const mockUsePokemonPerPage = usePokemonPerPage as jest.Mock;
 
 describe('PokemonList', () => {
     beforeEach(() => {
         mockGetTypes.mockResolvedValue([{ name: 'fire', url: '' }]);
+        mockUsePokemonPerPage.mockReturnValue({
+            limit: 20,
+            setLimit: jest.fn()
+        });
         mockUsePokemon.mockReturnValue({
             pokemon: {
                 id: 25,

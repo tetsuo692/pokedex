@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaRulerVertical, FaWeightHanging, FaHeart } from 'react-icons/fa';
 import { useFavorites } from '../hooks/useFavorites';
 import { useTranslation } from 'react-i18next';
+import { EvolutionChainView } from './EvolutionChain';
 
 interface PokemonModalProps {
     pokemon: Pokemon | null;
@@ -91,7 +92,7 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) 
                     </div>
 
                     {/* Right Side: Stats & Info */}
-                    <div className="w-full md:w-3/5 p-8 overflow-y-auto bg-white dark:bg-gray-800 transition-colors duration-300">
+                    <div className="w-full md:w-3/5 p-8 overflow-y-auto custom-scrollbar bg-white dark:bg-gray-800 transition-colors duration-300">
 
                         <div className="grid grid-cols-2 gap-4 mb-8">
                             <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-2xl">
@@ -137,6 +138,10 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) 
                                     {ability.ability.name.replace('-', ' ')}
                                 </span>
                             ))}
+                        </div>
+
+                        <div className="mt-8">
+                            <EvolutionChainView pokemonId={pokemon.id} />
                         </div>
                     </div>
                 </motion.div>
