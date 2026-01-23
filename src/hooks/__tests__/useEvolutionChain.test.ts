@@ -84,6 +84,9 @@ describe('useEvolutionChain', () => {
     });
 
     it('should handle API errors', async () => {
+        // Mute console.error for this test as we expect an error to be logged
+        const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
+
         mockGetPokemonSpecies.mockRejectedValue(new Error('API Error'));
 
         const { result } = renderHook(() => useEvolutionChain(1));
@@ -92,5 +95,10 @@ describe('useEvolutionChain', () => {
 
         expect(result.current.error).toBe("Failed to load evolutions.");
         expect(result.current.evolutionChain).toBeNull();
+
+        // Ensure console.error was called (proving the catch block was hit)
+        expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch evolution chain", expect.any(Error));
+
+        consoleSpy.mockRestore();
     });
 });
