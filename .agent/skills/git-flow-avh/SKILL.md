@@ -50,7 +50,6 @@ This skill integrates the **GitFlow AVH Edition** command-line tool into your wo
    - Command: `git flow feature track <name>`
    - Result: Pulls a published feature branch from `origin`.
 4. **Finish Feature**:
-   - **Run tests** before merging (if available)
    - Command: `git flow feature finish <name>`
    - Result: Merges into `develop`, removes feature branch, switches to `develop`.
 
@@ -64,8 +63,6 @@ This skill integrates the **GitFlow AVH Edition** command-line tool into your wo
 2. **Publish Release** (Recommended):
    - Command: `git flow release publish <version>`
 3. **Finish Release**:
-   - **Update version** in package.json (if Node.js project)
-   - **Generate CHANGELOG.md** from git commits
    - Command: `git flow release finish <version>`
    - *Prompt*: "Don't forget to push tags: `git push origin --tags`"
    - Result: Merges to `master` (tag) and `develop`, removes release branch.
