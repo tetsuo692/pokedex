@@ -64,18 +64,21 @@ This skill integrates the **GitFlow AVH Edition** command-line tool into your wo
    - Command: `git flow release start <version>`
    - *Note*: Version should follow semantic versioning (e.g., `1.2.0`).
    - Result: Creates `release/<version>` from `develop`.
-2. **Update Check** (Node.js projects):
+2. **Update Changelog**:
+   - Command: `node .agent/skills/git-flow-avh/scripts/generate-changelog.cjs <version>`
+   - *Action*: Commit the changelog update: `git commit -am "docs: update changelog"`
+3. **Update Check** (Node.js projects):
    - Command: `npm version <version> --no-git-tag-version`
    - *Action*: Commit the version bump: `git commit -am "chore(release): bump version to <version>"`
-3. **Publish Release** (Recommended):
+4. **Publish Release** (Recommended):
    - Command: `git flow release publish <version>`
-4. **Finish Release**:
+5. **Finish Release**:
    - Command: `git flow release finish <version>`
    - Result: Merges to `master` (tag) and `develop`, removes release branch.
-5. **Push Changes**:
+6. **Push Changes**:
    - Command: `git push origin --all`
    - Command: `git push origin --tags`
-6. **Delete Remote** (If published):
+7. **Delete Remote** (If published):
    - Command: `git push origin --delete release/<version>`
 
 ### Workflow 4: Hotfix Lifecycle
@@ -84,16 +87,19 @@ This skill integrates the **GitFlow AVH Edition** command-line tool into your wo
 1. **Start Hotfix**:
    - Command: `git flow hotfix start <version>`
    - Result: Creates `hotfix/<version>` from `master`.
-2. **Update Check** (Node.js projects):
+2. **Update Changelog**:
+   - Command: `node .agent/skills/git-flow-avh/scripts/generate-changelog.cjs <version>`
+   - *Action*: Commit the changelog update: `git commit -am "docs: update changelog"`
+3. **Update Check** (Node.js projects):
    - Command: `npm version <version> --no-git-tag-version`
    - *Action*: Commit the version bump: `git commit -am "chore(hotfix): bump version to <version>"`
-3. **Finish Hotfix**:
+4. **Finish Hotfix**:
    - Command: `git flow hotfix finish <version>`
    - Result: Merges to `master` (tag) and `develop`, removes hotfix branch.
-4. **Push Changes**:
+5. **Push Changes**:
    - Command: `git push origin --all`
    - Command: `git push origin --tags`
-5. **Delete Remote** (If published):
+6. **Delete Remote** (If published):
    - Command: `git push origin --delete hotfix/<version>`
 
 ## Quick Reference
