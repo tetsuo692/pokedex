@@ -50,6 +50,8 @@ This skill integrates the **GitFlow AVH Edition** command-line tool into your wo
    - Command: `git flow feature track <name>`
    - Result: Pulls a published feature branch from `origin`.
 4. **Finish Feature**:
+   - **Pre-requisite**: Run tests (`npm run test` or equivalent).
+   - **Action**: If tests fail, **FIX THEM** before proceeding.
    - Command: `git flow feature finish <name>`
    - Result: Merges into `develop`, removes feature branch, switches to `develop`.
 
